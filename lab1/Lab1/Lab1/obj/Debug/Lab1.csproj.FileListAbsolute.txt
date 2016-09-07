@@ -1,0 +1,9 @@
+J:\CS 312\lab1\Lab1\Lab1\bin\Debug\Lab1.exe.config
+J:\CS 312\lab1\Lab1\Lab1\bin\Debug\Lab1.exe
+J:\CS 312\lab1\Lab1\Lab1\bin\Debug\Lab1.pdb
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.csprojResolveAssemblyReference.cache
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.Properties.Resources.resources
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.csproj.GenerateResource.Cache
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.exe
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.pdb
+J:\CS 312\lab1\Lab1\Lab1\obj\Debug\Lab1.is_prime.resources
