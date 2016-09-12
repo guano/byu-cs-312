@@ -1,0 +1,8 @@
+HW#3: 1.18 (3), 1.20 (4) (just the last 3), 1.27 (3)
+
+1.18 Compute gcd(210, 588) two different ways: by finding the factorization of each number, and by using Euclid's algorithm
+
+1.20 Find the inverse of: 3mod62, 21mod91, 5mod23
+
+1.27 Consider an RSA key set with p=17, q=23, N=391, and e=3 (as in fig1.9). What value of d should be used for the secret key? What is the encryption of the message M=41?
+

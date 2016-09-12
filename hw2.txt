@@ -1,32 +1,20 @@
- 	
+Taylor Cowley
+September 08 2016
+CS 312 Hw 02
 
 HW#2:  1.7 (3), 1.25 (3), solve 221 mod 18 using the modexp algorithm of fig 1.4 (4).  Show a table with all variable values at each call level.
 
 
-
-
 1.7 How long does the recursive multiplication algorithm (p 13) take to multiply ann n-bit number by an m-bit number? Justify
-
-
-multiply(x,y){
-	if y = 0
-		return 0;
-	z = multiply(x, y/2)
-	if y even
-		return 2z;
-	else
-		return x+2z;
-}
-
-
-
+	The recursive algorithm for n*n takes O(n^2) because there are n function calls	and it takes n to sort through each call.
+	Which means that n*m takes O(n*m), because we still have the n calls, but the other number is m instead of n. 
 
 
 1.25 Calculate 2^125 mod 127 using any method you choose. (Hint: 127 is prime)
 	fermat's little theorum = if p is prime, then for every 1<=a<p, a^(p-1) mod p = 1
+	Which means that 2*(2^125 mod 127) =1, and is important. But I don't know what to do past that.
 
-	Using wolfram alpha: http://www.wolframalpha.com/input/?i=2^125+mod+127 = 64. Gotta do it for real now.
-
+	Using wolfram alpha: http://www.wolframalpha.com/input/?i=2^125+mod+127 = 64. I guess I pick this method [shrugs]
 
 
 Solve 2^21 mod 18 using the modexp algorithm of fig 1.4. Show a table with all the variable values at each call level.
@@ -61,3 +49,4 @@ Solve 2^21 mod 18 using the modexp algorithm of fig 1.4. Show a table with all t
 	return 2 * 16^2 mod 18 = 8
 
 	2^21MOD18 = 8
+
