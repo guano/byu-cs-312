@@ -1,0 +1,21 @@
+Taylor Cowley
+CS 312 Hw 5
+September 20, 2016
+
+2.19 - A k-way merge operation. Suppose you have k sorted arrays, each with n elements, and you want to combine them into a single sorted array of kn elements.
+	a - Here's one strategy: using the merge procedure from section 2.3, merge the first two arrays, then merge in the third, then merge in the fourth, and so on. What is the time complexity of this algorithym, in terms of k and n?
+		K arrays, each with n. So merge takes 2n, and this happens k-1 times. So the time complexity is O(2n(k-1))
+
+	b - Give a more efficient solution to this problem, using divide-and-conquer
+		So we basically do exactly the same strategy as a, but instead of having a "master array" that we keep merging with every new array, but split up the arrays two by two and merge all those groups of two together, then merge the new arrays together two by two, etc. until getting one big array. Do this recursively, so that it qualifies under strict definitions of divide-and-conquer.
+		So we wind up with k arrays, each with n elements. A merge still takes O(2n), but this only happens log2(k) times. The time complexity winds up being O(nlog(k))
+
+
+2.23
+	An array A[1....n] is said to have a majority element if more than half of its entries are the same. Given an array, the task is to design an efficient algorithm to tell whether the array has a majority element, and, if so, ti find that element. The elements of the array are not necessarily from some ordered domain like the integers, and so there can be no comparisons. However you CAN answer "is A[i] == A[j]" in constant time.
+	a. Show how to solve this problem in O(nlog(n)) time. (Hint: split the array A into  arrays A1 and A2 of half te size. Does knowing the majority elements of A1 and A2 help you figure out the majority element of A? If so, divid-and conquer works)
+		So dividing up A into sub-arrays, eventually you get to length 1 arrays. Each of these An arrays has a majority element of whatever is in it. Then we merge them back together, discovering the majority element each time. When we merge the arrays back up- if one array has a majority element, we compare it to every element in the two arrays and see if it happens more than half the time-making it still the majority element. If each of the two arrays has a majority element, we do that for each of the two to see which one wins. If neither array has a majority element, the combined will also not have one. The comparing happens in O(n) time, and this happens O(log(n)) times. Making the total big O O(n log n)
+
+	b. Can you give a linear-time algorithm? (Hint: here's another divide-and-conquer approach: 1. Pair up the elements of A arbitrarily to get n/2 pairs 2. Look at each pair: if the two elements are different, discard both of them; if they are the same, keep just one of them Show that after this procedure that there are at most n/2 elements left, and that they have a majority element if A does.)
+		So if A has a majority element, then it will exist in at least half of the pairs. But when we throw away pairs that have different numbers, we make it so that a number is only kept if it was the same, so the majority element number stays high. We keep comparing pairs of numbers after that to get rid of numbers that exist many times, but not more than half to be the majority element. Because we have to have > n/2 to be a majority number, the smaller number of other numbers all cancel themselves against whatever majority number exists, and the majority number stays. But if there is no number that exists more than n/2 times, all the numbers will cancel with each other and we will be left with no numbers. The end.
+

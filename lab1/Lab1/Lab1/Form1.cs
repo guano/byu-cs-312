@@ -34,7 +34,7 @@ namespace Lab1
             long possible_prime = (Convert.ToInt64(input.Text));
             if (prime_maybe(possible_prime)) {
                 double k = Convert.ToDouble(k_value.Text);
-                output.Text = "prime! Probablility " + 100.0*(1.0/(Math.Pow(2.0, k))) + "%";
+                output.Text = "prime! ErrorProb " + 100.0*(1.0/(Math.Pow(2.0, k))) + "%";
             } else {
                 output.Text = "Nope, not prime.";
             }
@@ -45,9 +45,10 @@ namespace Lab1
 
         }
 
-        // O(k * log(n) * xy)
+        // O(n^3)
         private bool prime_maybe(long n) {
             // pick k positive integers at random that are between 2 and k
+            // O(1)
             Random rnd = new Random();
             int test = rnd.Next(2, 12);
             int k = (Convert.ToInt32(k_value.Text));
@@ -57,6 +58,7 @@ namespace Lab1
             }
 
             // if(a^(n-1) mod n == 1 for all above numbers)
+            // O(1 * O(mod_exp))
             foreach (long r in rands) {
                 long exp = mod_exp((int) r, ((int) n - 1), (int) n);
                 if (exp != 1) {
@@ -67,7 +69,9 @@ namespace Lab1
         }
 
         // Produces x^y mod n
-        // O(xy)
+        // T(n) = aT(n/b) + O(n^d)
+        // T(n) = 1T(n/2) + O(n^3)
+        // O(n^3)
         private long mod_exp(long x, long y, long n) {
             if(y == 0)
                 return 1;

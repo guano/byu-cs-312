@@ -1,8 +1,51 @@
+Taylor Cowley
+CS 312 HW 3
+Sept 12, 2016
+
 HW#3: 1.18 (3), 1.20 (4) (just the last 3), 1.27 (3)
 
 1.18 Compute gcd(210, 588) two different ways: by finding the factorization of each number, and by using Euclid's algorithm
+	Factorization:
+	210						588
+	105 2					294 2
+	21 5					147 2
+	7 3						49 3
+	= 2, 3, 5, 7			7 7
+							= 7, 7, 3, 2, 2
+	Common: 7, 3, 2 -> 7*3*2 = 42 is the GCD
+
+	Euclid's algorithm
+	gcd(210, 588) = gcd(588 mod 210, 210)
+	gcd(168, 210) = gcd(210 mod 168, 168)
+	gcd(42, 168) = gcd(168 mod 42, 42)
+	gcd(0, 42) = 42 is the GCD
 
 1.20 Find the inverse of: 3mod62, 21mod91, 5mod23
 
+:/
+
 1.27 Consider an RSA key set with p=17, q=23, N=391, and e=3 (as in fig1.9). What value of d should be used for the secret key? What is the encryption of the message M=41?
+
+p=17
+q=23
+N=17*23=391
+e=3
+
+(p-1)(q-1) = 16*22=352. Now we use Euclid's to make sure 3 is relatively prime
+
+E(352, 3) -> E(3, 1) -> E(1,0) yes 3 is a good number
+our message M=41
+
+41^3 mod 352 = 68921 mod 352 = 281 is our encrypted message.
+
+Now to decrypt it.
+e = 3
+n = 352
+
+Call table
+a   b
+352 3
+3	1
+1	0
+[sigh] I don't know
 
