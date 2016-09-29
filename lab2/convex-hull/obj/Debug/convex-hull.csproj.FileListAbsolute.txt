@@ -38,3 +38,9 @@ C:\Users\Richard\Desktop\convex hull\convex-hull\obj\Debug\GenerateResource.read
 C:\Users\Richard\Desktop\convex hull\convex-hull\obj\Debug\GenerateResource.write.1.tlog
 J:\CS 312\lab2\convex-hull\obj\Debug\01-convex-hull.exe
 J:\CS 312\lab2\convex-hull\obj\Debug\01-convex-hull.pdb
+J:\CS 312\lab2\convex-hull\bin\Debug\01-convex-hull.exe
+J:\CS 312\lab2\convex-hull\bin\Debug\01-convex-hull.pdb
+J:\CS 312\lab2\convex-hull\obj\Debug\convex-hull.csprojResolveAssemblyReference.cache
+J:\CS 312\lab2\convex-hull\obj\Debug\_2_convex_hull.FormMain.resources
+J:\CS 312\lab2\convex-hull\obj\Debug\_1_convex_hull.Properties.Resources.resources
+J:\CS 312\lab2\convex-hull\obj\Debug\convex-hull.csproj.GenerateResource.Cache

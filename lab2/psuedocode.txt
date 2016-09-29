@@ -1,0 +1,53 @@
+Ok so this is pseudocode for my Solve algorithm.
+
+Given a list of points, we figure out the convex hull.
+
+And our friken algorithm doesn't return anything
+
+It just draws the lines on the screen. Alrighty.
+
+
+
+ok so recursion.
+
+Base case- a single point. 
+Alternate base case- three points. We then have three lines - one between each point
+
+What data structure should hold our lines?
+	We could just have a set (list?) of lines- with 2 points associated with each line
+	We could have a linked list. Each point points to the next point, and that is the line....
+		Let's think about that a little bit more. Which means that
+
+
+
+Anyway. To merge.
+
+Merge the top.
+	We take the rightmost point of L and make a line to the leftmost point of R
+	Going counterclockwise on L, draw new lines to the new points from the above.
+		We keep doing this as long as the slope gets more negative. Make note of the best point and move on
+	Going clockwise on R, draw new lines to the new points from the above stable point.
+		Keep going as long as slope gets more positive.
+	If nothing changed, we have the best! If something changed, do above again.
+
+Merge the bottom
+	Rightmost point of L, make line to leftmost point of R
+	Going clockwise on L, draw new lines to new points from above point on R
+		Keep doing this as long as slope becomes more positive.
+	Going counterclockwise on R, draw new lines to above point.
+		Keep doing this as long as slope becomes more negative.
+	If nothing changed, we have the best!
+
+After merging, we should have
+	on the top:
+		A line from a point on L to a point on R.
+		To insert this- 
+			Going through L's list, remove all points up to the bottom point on L.
+			make L's top point point to R's top point.
+	On the bottom:
+		A line from a point on L to a point on R.
+		To insert this- 
+			Going through R's list, remove all points up to the top point on R.
+			Make R's bottom point point to L's bottom point.
+
+Our linked list always goes clockwise. Remember this.
