@@ -44,3 +44,7 @@ J:\CS 312\lab2\convex-hull\obj\Debug\convex-hull.csprojResolveAssemblyReference.
 J:\CS 312\lab2\convex-hull\obj\Debug\_2_convex_hull.FormMain.resources
 J:\CS 312\lab2\convex-hull\obj\Debug\_1_convex_hull.Properties.Resources.resources
 J:\CS 312\lab2\convex-hull\obj\Debug\convex-hull.csproj.GenerateResource.Cache
+J:\CS 312\lab2\convex-hull\bin\Debug\01-convex-hull.exe.manifest
+J:\CS 312\lab2\convex-hull\bin\Debug\01-convex-hull.application
+J:\CS 312\lab2\convex-hull\obj\Debug\01-convex-hull.exe.manifest
+J:\CS 312\lab2\convex-hull\obj\Debug\01-convex-hull.application
