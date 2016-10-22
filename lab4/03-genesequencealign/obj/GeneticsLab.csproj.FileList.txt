@@ -1,0 +1,8 @@
+bin\Debug\GeneticsLab.exe
+bin\Debug\GeneticsLab.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\GeneticsLab.MainForm.resources
+obj\Debug\GeneticsLab.Properties.Resources.resources
+obj\Debug\GeneticsLab.csproj.GenerateResource.Cache
+obj\Debug\GeneticsLab.exe
+obj\Debug\GeneticsLab.pdb

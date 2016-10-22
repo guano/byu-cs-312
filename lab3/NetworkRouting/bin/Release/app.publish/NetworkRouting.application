@@ -7,7 +7,7 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="NetworkRouting.exe.manifest" size="3072">
+    <dependentAssembly dependencyType="install" codebase="Application Files\NetworkRouting_1_0_0_11\NetworkRouting.exe.manifest" size="3072">
       <assemblyIdentity name="NetworkRouting.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
