@@ -1,0 +1,12 @@
+J:\CS 312\lab4\03-genesequencealign\bin\Release\GeneticsLab.exe.manifest
+J:\CS 312\lab4\03-genesequencealign\bin\Release\GeneticsLab.application
+J:\CS 312\lab4\03-genesequencealign\bin\Release\GeneticsLab.exe
+J:\CS 312\lab4\03-genesequencealign\bin\Release\GeneticsLab.pdb
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.csprojResolveAssemblyReference.cache
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.MainForm.resources
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.Properties.Resources.resources
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.csproj.GenerateResource.Cache
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.exe.manifest
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.application
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.exe
+J:\CS 312\lab4\03-genesequencealign\obj\Release\GeneticsLab.pdb
