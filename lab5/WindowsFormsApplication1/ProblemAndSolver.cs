@@ -758,13 +758,12 @@ namespace TSP
             }
         }
 
-
-
         public string[] fancySolveProblem()
         {
             string[] results = new string[3];
 
             // TODO: Add your implementation for your advanced solver here.
+
 
             results[COST] = "not implemented";    // load results into array here, replacing these dummy values
             results[TIME] = "-1";
@@ -772,6 +771,27 @@ namespace TSP
 
             return results;
         }
+
+
+		class RouletteWheel
+		{
+			ArrayList[] population;
+
+			public RouletteWheel(ArrayList[] population)
+			{
+				this.population = population.OrderBy(member => new TSPSolution(member).costOfRoute()).ToArray();
+			}
+
+			public ArrayList getRandomMember()
+			{
+				// Generate random number more likley to be small than large (linearly)
+				Random rand = new Random();
+				int ind = Math.Abs(rand.Next(0, 1) - rand.Next(0, 1)) * population.Count();
+
+				return population[ind];
+			}
+		}
+
         #endregion
     }
 
