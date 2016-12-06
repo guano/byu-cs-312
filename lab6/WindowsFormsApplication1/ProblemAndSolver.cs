@@ -794,7 +794,6 @@ namespace TSP
                 //This will call advance in finding the best path iteratively by leveraging the Roulette Wheel
                 RouletteWheel wheel =  RouletteWheel(cities)
                 int psuedoRandomNumber = wheel.getRandomMember()
-
                 //ToDo: Add other function calls here to get the best path guesses 
                 //Then we pass this city into ..
         }
@@ -827,6 +826,41 @@ namespace TSP
 				return population[0];
 			}
 		}
+
+        // Function for MUTATION for our GA
+        // Takes an ArrayList of Cities as a parameter.
+        // Swaps two of the cities while maintaining a cycle.
+        // Returns a NEW ArrayList with the swapped cities
+        // Do we want to change it to return the old arraylist with swapped cities?
+        // Cause right now we have to clone an ArrayList every single dang time
+        private ArrayList swapTwo(ArrayList route)
+        {
+            ArrayList newRoute = (ArrayList)route.Clone();
+
+            Random rand = new Random();
+            int city1 = rand.Next(1, newRoute.Count - 2);
+            int city2 = rand.Next(1, newRoute.Count - 2);
+
+            // If the indices are the same we cannot swap the two cities
+            if (city1 == city2) { return swapTwo(route); }
+
+            // If the previous cities cannot reach their new cities
+            // or the cities cannot reach their next cities
+            // gotta try again
+            if (((City)(newRoute[city1 - 1])).costToGetTo((City)(newRoute[city2])) == double.PositiveInfinity
+                || ((City)(newRoute[city2 - 1])).costToGetTo((City)(newRoute[city1])) == double.PositiveInfinity
+                || ((City)(newRoute[city1])).costToGetTo((City)(newRoute[city2 + 1])) == double.PositiveInfinity
+                || ((City)(newRoute[city2])).costToGetTo((City)(newRoute[city1 + 1])) == double.PositiveInfinity)
+            {
+                return swapTwo(route);
+            }
+
+            City temp = (City)newRoute[city1];
+            newRoute[city1] = newRoute[city2];
+            newRoute[city2] = temp;
+
+            return newRoute;
+        }
 
         #endregion
     }

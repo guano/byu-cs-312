@@ -16,3 +16,6 @@ J:\CS 312\lab5\WindowsFormsApplication1\obj\Debug\TSP.csprojResolveAssemblyRefer
 J:\CS 312\lab5\WindowsFormsApplication1\obj\Debug\TSP.mainform.resources
 J:\CS 312\lab5\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 J:\CS 312\lab5\WindowsFormsApplication1\obj\Debug\TSP.csproj.GenerateResource.Cache
+J:\CS 312_2\byu-cs-312\lab6\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+J:\CS 312_2\byu-cs-312\lab6\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+J:\CS 312_2\byu-cs-312\lab6\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
