@@ -781,6 +781,30 @@ namespace TSP
             return results;
         }
 
+        public void geneticSolve()
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            //ToDo: Set the limit for running the genetic algorithm, to quit with best found limit
+            //Assuming the limit is a time (seconds)
+            int limit = 180
+
+            while(timer !=limit){
+                //This will call advance in finding the best path iteratively by leveraging the Roulette Wheel
+                RouletteWheel wheel =  RouletteWheel(cities)
+                int psuedoRandomNumber = wheel.getRandomMember()
+
+                //ToDo: Add other function calls here to get the best path guesses 
+                //Then we pass this city into ..
+        }
+            
+
+
+            timer.Stop();
+
+        }
+
 
 		class RouletteWheel
 		{
