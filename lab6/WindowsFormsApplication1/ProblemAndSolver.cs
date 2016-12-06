@@ -623,11 +623,6 @@ namespace TSP
         private LinkedListNode addNode(LinkedListNode to_add, LinkedListNode priorityQueue) {
             BBstatesCreated++;  // we are adding one; it is created
             BBcurrentStates++;  // and current state is incremented
-
-            // -----------------------------
-            // THE NEXT LINE OF CODE IS A BUG. to_add.path_size is not the cost of the route!
-            // FIXME: not cost
-            //------------------------------
             if (bssf != null && to_add.path_size > bssf.costOfRoute()) {
                 // greater than the best path we have found so far.
                 // stop wasting our time
@@ -767,40 +762,25 @@ namespace TSP
         {
             string[] results = new string[3];
 
-            // TODO: Add your implementation for your advanced solver here.
+			// TODO: Add your implementation for your advanced solver here
 
+			// Test roulette wheel.
+			ArrayList[] list = new ArrayList[100000];
+			for (int i = 0; i < 100000; i++)
+			{
+				defaultSolveProblem();
+				list[i] = bssf.Route;
+			}
+			RouletteWheel wheel = new RouletteWheel(list);
+			bssf = new TSPSolution(wheel.getRandomMember());
 
-            results[COST] = "not implemented";    // load results into array here, replacing these dummy values
+			results[COST] = bssf.costOfRoute().ToString();    // load results into array here, replacing these dummy values
             results[TIME] = "-1";
             results[COUNT] = "-1";
 
             return results;
         }
 
-
-        public void geneticSolve()
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-
-            //ToDo: Set the limit for running the genetic algorithm, to quit with best found limit
-            //Assuming the limit is a time (seconds)
-            int limit = 180
-
-            while(timer !=limit){
-                //This will call advance in finding the best path iteratively by leveraging the Roulette Wheel
-                RouletteWheel wheel =  RouletteWheel(cities)
-                int psuedoRandomNumber = wheel.getRandomMember()
-
-                //ToDo: Add other function calls here to get the best path guesses 
-                //Then we pass this city into ..
-            }
-            
-
-
-            timer.Stop();
-
-        }
 
 		class RouletteWheel
 		{
@@ -815,9 +795,12 @@ namespace TSP
 			{
 				// Generate random number more likley to be small than large (linearly)
 				Random rand = new Random();
-				int ind = Math.Abs(rand.Next(0, 1) - rand.Next(0, 1)) * population.Count();
+				for (int i = 0; i < 10000; i++) {
+					int ind = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+					Console.WriteLine(ind);
+				}
 
-				return population[ind];
+				return population[0];
 			}
 		}
 
