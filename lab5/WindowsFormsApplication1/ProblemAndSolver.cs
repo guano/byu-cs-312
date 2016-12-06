@@ -623,6 +623,11 @@ namespace TSP
         private LinkedListNode addNode(LinkedListNode to_add, LinkedListNode priorityQueue) {
             BBstatesCreated++;  // we are adding one; it is created
             BBcurrentStates++;  // and current state is incremented
+
+            // -----------------------------
+            // THE NEXT LINE OF CODE IS A BUG. to_add.path_size is not the cost of the route!
+            // FIXME: not cost
+            //------------------------------
             if (bssf != null && to_add.path_size > bssf.costOfRoute()) {
                 // greater than the best path we have found so far.
                 // stop wasting our time
