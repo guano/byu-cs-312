@@ -1,0 +1,10 @@
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/TSP.mainform.resources
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/WindowsFormsApplication1.Properties.Resources.resources
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.exe.config
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.exe.mdb
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.pdb
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.exe
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/WindowsFormsApplication1.exe
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/WindowsFormsApplication1.exe.mdb
+/Users/Joseph/byu-cs-312/lab5/WindowsFormsApplication1/obj/Debug/WindowsFormsApplication1.pdb
