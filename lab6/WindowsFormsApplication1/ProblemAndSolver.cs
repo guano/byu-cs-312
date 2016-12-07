@@ -790,13 +790,23 @@ namespace TSP
             //Assuming the limit is a time (seconds)
             int limit = 180
 
+            //Get initial population
+
             while(timer !=limit){
                 //This will call advance in finding the best path iteratively by leveraging the Roulette Wheel
                 RouletteWheel wheel =  RouletteWheel(cities)
                 int psuedoRandomNumber = wheel.getRandomMember()
                 //ToDo: Add other function calls here to get the best path guesses 
                 //Then we pass this city into ..
-        }
+                
+                ArrayList newRoutes = new ArrayList();
+                for(int i = 0; i < 5; i++)
+                {
+                    newRoutes.Add(crossingOver())
+                }
+
+
+            }
             
 
 
@@ -861,6 +871,129 @@ namespace TSP
 
             return newRoute;
         }
+
+        public int[] crossingOver(int[] parent)
+        {
+
+            // Assumption: parent is the same size as the Cities array length. 
+            Random rn = new Random();  
+            int kmerSize = rn.Next(1,parent.Length - 1); //the size of the piece kept
+
+            double tempBSSF = double.PositiveInfinity;
+            int[] tempRoute = new int[parent.Length];
+
+            foreach (int ind in parent
+            {
+               // System.Console.Write(ind + " ");
+            }
+
+            //System.Console.WriteLine("\n\n");
+           // System.Console.WriteLine(kmerSize);
+
+            for (int i = 0; i < parent.Length - (kmerSize - 1); i++) //iterate over parents with kmersize
+            {
+                //range to keep = 1 to 1 + kmerSize
+                //for (int j = i; j < i + kmerSize; j++
+                int[] newarray = new int[parent.Length - kmerSize];
+                int arrayIndex = 0;
+
+                Queue kmerQueue = new Queue();
+                for (int j = 0; j < parent.Length; j++)
+                {
+                    //System.Console.Write(parent1[j]);
+                    if (j < i || j >= i + kmerSize) // if it is not the conserved area.
+                    {
+                        newarray[arrayIndex] = parent[j];
+                        arrayIndex += 1;
+                    }
+                    else
+                    { //conserved regio
+                       // System.Console.Write(parent[j]);
+                        kmerQueue.Enqueue(parent[j]);
+
+                    }
+
+
+                }
+
+
+                //check solution.
+                Queue shuffledArray = generateRandomNumbers(newarray);
+                int[] childPath = new int[parent.Length];
+                ArrayList tempCities = new ArrayList();
+
+                for (int c = 0; c < parent.Length; c++)
+                {
+                    if (c < i || c >= (i + kmerSize))
+                    {
+                        int nextIndex = Convert.ToInt16(shuffledArray.Dequeue());
+                        childPath[c] = nextIndex;
+                        tempCities.Add(Cities[nextIndex]);
+                    }
+                    else
+                    {
+                        int nextIndex2 = Convert.ToInt16(kmerQueue.Dequeue());
+                        childPath[c] = nextIndex2;
+                        tempCities.Add(Cities[nextIndex2]);
+                    }
+
+                }
+
+                ArrayList routeHolder = Route;
+                Route = tempCities;
+                bssf = new TSPSolution(Route);
+                if (costOfBssf() < tempBSSF) //if the cost of the new path is less then the old one: 
+                {
+                    tempBSSF = costOfBssf(); //change the tempBSSF to the new one. 
+                    tempRoute = childPath; //change the tempPath to the new one. 
+                }
+
+                Route = routeHolder;
+                bssf = new TSPSolution(Route);
+
+               // resetData();
+
+
+               // System.Console.WriteLine("\n\n");
+            }
+
+            //System.Console.WriteLine(tempBSSF);
+
+            return tempRoute;
+
+        }
+
+
+        private Queue generateRandomNumbers(int[] numbers)
+        {
+            //System.Console.Write("\t");
+            //foreach (int ind in numbers)
+            //{
+                //System.Console.Write(ind + " ");
+            //}
+
+
+            Random rn = new Random();
+            int[] shuffledArray = numbers.OrderBy(x => rnd.Next()).ToArray();
+            Queue shuffledQueue = new Queue();
+            foreach (int ind in shuffledArray)
+            {
+                shuffledQueue.Enqueue(ind);
+            }
+
+            //System.Console.WriteLine("\n");
+
+            //System.Console.Write("\t");
+           // foreach (int ind in shuffledArray)
+            //{
+              //  System.Console.Write(ind + " ");
+            //}
+           // System.Console.WriteLine("\n");
+
+            return shuffledQueue;
+
+        }
+
 
         #endregion
     }
