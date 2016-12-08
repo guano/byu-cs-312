@@ -797,12 +797,13 @@ namespace TSP
 
 			Console.WriteLine(population);
 			RouletteWheel wheel = new RouletteWheel(population, Cities);
+			int generations = 0;
 
 			while (timer.ElapsedMilliseconds <= time_limit)
 			{
-				Console.WriteLine(timer.ElapsedMilliseconds + "   " + time_limit);
+				generations++;
 				ArrayList[] newPopulation = new ArrayList[population_size];
-				for (int i = 0; i < population_size; i++)
+				for (int i = 0; i < population_size - 10; i++)
 				{
 					ArrayList parent = wheel.getRandomMember();
 					int[] childArr = crossingOver(convertToArr(parent));
@@ -818,8 +819,17 @@ namespace TSP
 					}
 				}
 
+				// select a few parents to live on
+				for (int i = population_size - 10; i < population_size; i++)
+				{
+					ArrayList parent = wheel.getRandomMember();
+					newPopulation[i] = parent;
+				}
+
 				population = newPopulation;
 			}
+
+			Console.WriteLine("generations: " + generations);
 
 			timer.Stop();
 
@@ -850,8 +860,6 @@ namespace TSP
 			return result;
 		}
 
-
-
 		class RouletteWheel
 		{
 			ArrayList[] population;
@@ -868,9 +876,15 @@ namespace TSP
 				// Generate random number more likley to be small than large (linearly)
 				Random rand = new Random();
 
-				int ind = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+				int lin1 = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+				int lin2 = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+				int lin3 = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+				int lin4 = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+				int cur1 = Math.Abs(lin1 - lin2);
+				int cur2 = Math.Abs(lin3 - lin4);
+				int i = Math.Abs(cur1 - cur2);
 
-				return population[ind];
+				return population[i];
 			}
 
 			public ArrayList getBestMember()
