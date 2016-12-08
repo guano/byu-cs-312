@@ -324,6 +324,8 @@ namespace TSP
                 return -1D; 
         }
 
+		private ArrayList bestIndexRoute = new ArrayList();
+
         /// <summary>
         /// This is the entry point for the default solver
         /// which just finds a valid random tour 
@@ -335,6 +337,7 @@ namespace TSP
             string[] results = new string[3];
             int[] perm = new int[Cities.Length];
             Route = new ArrayList();
+			ArrayList IndexRoute = new ArrayList();
             Random rnd = new Random();
             Stopwatch timer = new Stopwatch();
 
@@ -357,8 +360,10 @@ namespace TSP
                 for (i = 0; i < Cities.Length; i++)                            // Now build the route using the random permutation 
                 {
                     Route.Add(Cities[perm[i]]);
+					IndexRoute.Add(perm[i]);
                 }
                 bssf = new TSPSolution(Route);
+				bestIndexRoute = IndexRoute;
                 count++;
             } while (costOfBssf() == double.PositiveInfinity);                // until a valid route is found
             timer.Stop();
@@ -758,83 +763,132 @@ namespace TSP
             }
         }
 
+		private bool isValidRoute(ArrayList routeIndexes)
+		{
+			HashSet<int> seen = new HashSet<int>();
+			for (int i = 0; i < routeIndexes.Count - 1; i++)
+			{
+				if (seen.Contains((int)routeIndexes[i])) {
+					return false;
+				}
+				if (double.IsPositiveInfinity(Cities[(int)routeIndexes[i]].costToGetTo(Cities[(int)routeIndexes[i + 1]]))) {
+					return false;
+				}
+				seen.Add((int)routeIndexes[i]);
+			}
+			return true;
+		}
+
         public string[] fancySolveProblem()
         {
             string[] results = new string[3];
 
-			// TODO: Add your implementation for your advanced solver here
+			Stopwatch timer = new Stopwatch();
+			timer.Start();
 
-			// Test roulette wheel.
-			ArrayList[] list = new ArrayList[100000];
-			for (int i = 0; i < 100000; i++)
+			ArrayList[] population = new ArrayList[population_size];
+
+			//Get initial population
+			for (int i = 0; i < population_size; i++)
 			{
 				defaultSolveProblem();
-				list[i] = bssf.Route;
+				population[i] = bestIndexRoute;
 			}
-			RouletteWheel wheel = new RouletteWheel(list);
-			bssf = new TSPSolution(wheel.getRandomMember());
+
+			Console.WriteLine(population);
+			RouletteWheel wheel = new RouletteWheel(population, Cities);
+
+			while (timer.ElapsedMilliseconds <= time_limit)
+			{
+				Console.WriteLine(timer.ElapsedMilliseconds + "   " + time_limit);
+				ArrayList[] newPopulation = new ArrayList[population_size];
+				for (int i = 0; i < population_size; i++)
+				{
+					ArrayList parent = wheel.getRandomMember();
+					int[] childArr = crossingOver(convertToArr(parent));
+					ArrayList child = new ArrayList();
+					child.AddRange(childArr);
+					if (isValidRoute(child))
+					{
+						newPopulation[i] = child;
+					}
+					else
+					{
+						i--;
+					}
+				}
+
+				population = newPopulation;
+			}
+
+			timer.Stop();
+
+			ArrayList bestSolution = new ArrayList();
+			foreach (int index in new RouletteWheel(population, Cities).getBestMember())
+			{
+				bestSolution.Add(Cities[index]);
+			}
+			bssf = new TSPSolution(bestSolution);
 
 			results[COST] = bssf.costOfRoute().ToString();    // load results into array here, replacing these dummy values
-            results[TIME] = "-1";
+			results[TIME] = timer.Elapsed.ToString();
             results[COUNT] = "-1";
 
             return results;
         }
 
-        public void geneticSolve()
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-
-            //ToDo: Set the limit for running the genetic algorithm, to quit with best found limit
-            //Assuming the limit is a time (seconds)
-            int limit = 180
-
-            //Get initial population
-
-            while(timer !=limit){
-                //This will call advance in finding the best path iteratively by leveraging the Roulette Wheel
-                RouletteWheel wheel =  RouletteWheel(cities)
-                int psuedoRandomNumber = wheel.getRandomMember()
-                //ToDo: Add other function calls here to get the best path guesses 
-                //Then we pass this city into ..
-                
-                ArrayList newRoutes = new ArrayList();
-                for(int i = 0; i < 5; i++)
-                {
-                    newRoutes.Add(crossingOver())
-                }
+		int population_size = 100;
 
 
-            }
-            
+		int[] convertToArr(ArrayList list)
+		{
+			int[] result = new int[list.Count];
+			for (int i = 0; i < list.Count; i++)
+			{
+				result[i] = (int) list[i];
+			}
+			return result;
+		}
 
-
-            timer.Stop();
-
-        }
 
 
 		class RouletteWheel
 		{
 			ArrayList[] population;
+			City[] cities;
 
-			public RouletteWheel(ArrayList[] population)
+			public RouletteWheel(ArrayList[] population, City[] cities)
 			{
-				this.population = population.OrderBy(member => new TSPSolution(member).costOfRoute()).ToArray();
+				this.cities = cities;
+				this.population = population.OrderBy(member => new TSPSolution(indexesToCities(member)).costOfRoute()).ToArray();
 			}
 
 			public ArrayList getRandomMember()
 			{
 				// Generate random number more likley to be small than large (linearly)
 				Random rand = new Random();
-				for (int i = 0; i < 10000; i++) {
-					int ind = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
-					Console.WriteLine(ind);
-				}
 
+				int ind = Math.Abs(rand.Next(0, population.Count()) - rand.Next(0, population.Count()));
+
+				return population[ind];
+			}
+
+			public ArrayList getBestMember()
+			{
 				return population[0];
 			}
+
+			ArrayList indexesToCities(ArrayList indexes)
+			{
+				ArrayList result = new ArrayList();
+				foreach (int index in indexes)
+				{
+					result.Add(cities[index]);
+				}
+				return result;
+			}
+
+
 		}
 
         // Function for MUTATION for our GA
@@ -882,7 +936,7 @@ namespace TSP
             double tempBSSF = double.PositiveInfinity;
             int[] tempRoute = new int[parent.Length];
 
-            foreach (int ind in parent
+			foreach (int ind in parent)
             {
                // System.Console.Write(ind + " ");
             }

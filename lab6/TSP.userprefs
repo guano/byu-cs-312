@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{8AE870FA-ED7A-4D15-8944-F737939E84BA}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="WindowsFormsApplication1/ProblemAndSolver.cs">
     <Files>
-      <File FileName="WindowsFormsApplication1/ProblemAndSolver.cs" Line="806" Column="3" />
+      <File FileName="WindowsFormsApplication1/ProblemAndSolver.cs" Line="803" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
